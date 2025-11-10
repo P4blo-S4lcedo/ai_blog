@@ -10,7 +10,7 @@ from models import User
 import models
 import os
 import google.generativeai as genai
-from google.generativeai import client
+from google.generativeai import generative_models, client
 
 # Configurar Gemini
 genai.configure(api_key="AIzaSyCsl8KyjVYG18AMfJ8B3gGl9D3WsAsBQL0")
