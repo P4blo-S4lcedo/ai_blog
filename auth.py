@@ -11,7 +11,9 @@ SECRET_KEY = "clavesupersecreta123456789"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
+
 
 # 👉 Permite pegar el token en Swagger sin "Bearer"
 auth_scheme = HTTPBearer(auto_error=False)
