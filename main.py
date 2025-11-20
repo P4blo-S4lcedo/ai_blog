@@ -91,7 +91,7 @@ def register(user: RegisterSchema, db: Session = Depends(get_db)):
     if existing_user:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
 
-    hashed_password = pwd_context.hash(user.password.encode('utf-8')[:72])
+    hashed_password = pwd_context.hash(user.password)
     db_user = User(email=user.email, password_hash=hashed_password)
     db.add(db_user)
 
