@@ -11,6 +11,7 @@ from google.generativeai import generative_models, client
 import auth
 import logging
 from fastapi.openapi.utils import get_openapi
+import os
 
 app = FastAPI(
     title="AI Blog API",
