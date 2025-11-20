@@ -7,3 +7,4 @@ python-jose[cryptography]
 python-dotenv
 requests
 google-generativeai
+argon2_cffi==21.3.0
