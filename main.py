@@ -84,6 +84,7 @@ class PostSchema(BaseModel):
 
 
 # ------- ENDPOINTS PÚBLICOS -------
+MAX_BCRYPT_LENGTH = 72  # bcrypt solo soporta 72 bytes
 
 @app.post("/register")
 def register(user: RegisterSchema, db: Session = Depends(get_db)):
@@ -91,7 +92,10 @@ def register(user: RegisterSchema, db: Session = Depends(get_db)):
     if existing_user:
         raise HTTPException(status_code=400, detail="El usuario ya existe")
 
-    hashed_password = pwd_context.hash(user.password.encode('utf-8')[:72])
+    # Truncar la contraseña en 72 caracteres (aprox seguro) antes de hashear
+    truncated_password = user.password[:MAX_BCRYPT_LENGTH]
+    hashed_password = pwd_context.hash(truncated_password)
+
     db_user = User(email=user.email, password_hash=hashed_password)
     db.add(db_user)
 
