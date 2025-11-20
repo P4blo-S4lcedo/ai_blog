@@ -168,7 +168,7 @@ def delete_post(
     post = db.query(Post).filter(Post.id == post_id).first()
 
     if not post:
-        raise HTTPException(status_code=404, detail="Post no encontrado")
+        raise HTTPException(status_code=404, detail="El post no ha sido encontrado")
 
     if post.author_id != current_user.id:
         raise HTTPException(status_code=403, detail="No tienes permiso")
