@@ -51,7 +51,7 @@ app.openapi = custom_openapi
 # ------------------------------------------------------------
 
 # CORS
-origins = ["https://P4blo-S4lcedo.github.io"]
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -132,7 +132,7 @@ def generate_post(
     db: Session = Depends(get_db),
     current_user: User = Depends(auth.get_current_user)
 ):
-    genai.configure(api_key="TU_API_KEY")
+    genai.configure(api_key=os.environ.get("GOOGLE_API_KEY"))
 
     model = genai.GenerativeModel("gemini-2.5-flash")
 
